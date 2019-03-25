@@ -25,11 +25,12 @@ class FileHandler
         $name = round(microtime(true) * 1000) . '.' . $extension;
         $filedest = dirname(__FILE__) . UPLOAD_PATH . $name;
         move_uploaded_file($file, $filedest);
+        $imageURL = 'http://keeka2.cafe24.com' . UPLOAD_PATH . $name;
  
         $url = $server_ip = gethostbyname(gethostname());
  
-        $stmt = $this->con->prepare("INSERT INTO images (description, url) VALUES (?, ?)");
-        $stmt->bind_param("ss", $desc, $name);
+        $stmt = $this->con->prepare("INSERT INTO images (description, image) VALUES (?, ?)");
+        $stmt->bind_param("ss", $desc, $imageURL);
         if ($stmt->execute())
             return true;
         return false;
