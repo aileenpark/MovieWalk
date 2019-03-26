@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MovieWalk</string>
+    <string-array name="selection">
+        <item >regional</item>
+        <item >artwork</item>
+    </string-array>
 </resources>
