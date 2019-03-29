@@ -1,22 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".BookmarkActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Bookmark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="186dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/circular_rectangle"
+        android:fontFamily="@font/antre"
+        android:text="bookmark"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/routeButton"
+        android:layout_width="match_parent"
+        android:layout_height="186dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/rounded_rectangle"
+        android:fontFamily="@font/nanum_square_regular"
+        android:text="경로별"
+        android:textColor="@android:color/white"
+        android:textSize="35dp"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="138dp" />
+
+    <Button
+        android:id="@+id/locButton"
+        android:layout_width="match_parent"
+        android:layout_height="186dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_rectangle"
+        android:fontFamily="@font/nanum_square_regular"
+        android:text="장소별"
+        android:textColor="@android:color/white"
+        android:textSize="35dp"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="364dp" />
+
+</LinearLayout>
