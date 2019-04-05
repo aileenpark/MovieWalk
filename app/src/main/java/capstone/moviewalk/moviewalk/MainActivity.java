@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         @Override
-        //php 연결되면 ManagementActivity 로 전환
+        //php 연결되면 ManagementActivity 로 전환2
         public void onPostExecute(String result){
             Intent intent = new Intent(MainActivity.this, ManagementActivity.class);
             intent.putExtra("dataList", result);
