@@ -47,7 +47,7 @@ public class ListAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        //한 리스트 안에 들어가는거(user.xml)
+        //한 리스트 안에 들어가는거(user.xml)1
         View v = View.inflate(context,R.layout.user,null);
 
         TextView ID = (TextView) v.findViewById(R.id.ID);
