@@ -1,5 +1,5 @@
 package capstone.moviewalk.moviewalk;
-
+//
 public class Data {
     String member_id;
     String member_name;

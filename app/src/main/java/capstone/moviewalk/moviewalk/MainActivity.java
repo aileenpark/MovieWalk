@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //DB 받아오는 php 파일로 연결
+    //DB 받아오는 php 파일로 연결2
 
     class BackgroundTask extends AsyncTask<Void, Void, String>
     {

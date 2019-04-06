@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ManagementActivity extends AppCompatActivity {
 
-    //MySQL의 DB를 받아서 datalist에 add1
+    //MySQL의 DB를 받아서 datalist에 add13
     private ListView listView;
     private ListAdapter adapter;
     private List<Data> dataList;
