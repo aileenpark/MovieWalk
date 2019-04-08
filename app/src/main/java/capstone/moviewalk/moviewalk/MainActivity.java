@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//다중마커
+//다중마커//
         final ArrayList alTMapPoint = new ArrayList();
         alTMapPoint.add(new TMapPoint(37.505426, 126.957169));
         alTMapPoint.add(new TMapPoint(37.506426, 126.958169));
