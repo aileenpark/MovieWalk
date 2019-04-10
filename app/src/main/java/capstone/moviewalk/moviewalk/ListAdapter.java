@@ -18,6 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 
 public class ListAdapter extends BaseAdapter {
 
@@ -178,6 +179,32 @@ public class ListAdapter extends BaseAdapter {
         //끝
         v.setTag(dataList.get(position).getMember_id());
         return v;
+    }
+
+    //검색기능(제목, 정보, 주소로 해놓음 일단)
+    public void searchData(String search){
+        search = search.toLowerCase(Locale.getDefault());
+        dataList.clear();
+
+        if (search.length() == 0) {
+            dataList.addAll(saveList);
+        }
+        else
+        {
+            for(int i=0; i<saveList.size(); i++){
+                if(saveList.get(i).getMember_title().contains(search)){
+                    dataList.add(saveList.get(i));
+                }
+                if(saveList.get(i).getMember_information().contains(search)){
+                    dataList.add(saveList.get(i));
+                }
+                if(saveList.get(i).getMember_address().contains(search)){
+                    dataList.add(saveList.get(i));
+                }
+            }
+        }
+
+        notifyDataSetChanged();
     }
 
 

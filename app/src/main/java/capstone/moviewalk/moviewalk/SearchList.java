@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SearchList extends AppCompatActivity {
 
@@ -61,7 +62,7 @@ public class SearchList extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        EditText search = (EditText)findViewById(R.id.search);
+        final EditText search = (EditText)findViewById(R.id.search);
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -70,32 +71,17 @@ public class SearchList extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchData(s.toString());
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                String text = search.getText().toString().toLowerCase(Locale.getDefault());
+                adapter.searchData(text);
 
             }
         });
 
-    }
-
-    public void searchData(String search){
-        dataList.clear();
-        for(int i=0; i<saveList.size(); i++){
-            if(saveList.get(i).getMember_title().contains(search)){
-                dataList.add(saveList.get(i));
-            }
-            if(saveList.get(i).getMember_information().contains(search)){
-                dataList.add(saveList.get(i));
-            }
-            if(saveList.get(i).getMember_address().contains(search)){
-                dataList.add(saveList.get(i));
-            }
-        }
-        adapter.notifyDataSetChanged();
     }
 
 
