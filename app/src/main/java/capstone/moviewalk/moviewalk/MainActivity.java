@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
                 new BackgroundTask().execute();
     }
-
+//
     //DB 받아오는 php 파일로 연결
 
     class BackgroundTask extends AsyncTask<Void, Void, String>

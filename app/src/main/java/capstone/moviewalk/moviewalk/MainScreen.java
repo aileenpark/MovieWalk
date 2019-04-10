@@ -30,7 +30,7 @@ public class MainScreen extends AppCompatActivity {
          final String str = intent.getStringExtra("dataList");
 
          //여기까지
-
+//
 
         Button bookmarkButton = (Button) findViewById(R.id.button3);
         bookmarkButton.setOnClickListener(new View.OnClickListener() {

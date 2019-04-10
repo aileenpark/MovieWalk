@@ -28,7 +28,7 @@ public class ListAdapter extends BaseAdapter {
     private Activity parentActivity;
     private List<Data> saveList;
 
-
+//
 
     Bitmap bitmap1;
     Bitmap bitmap2;

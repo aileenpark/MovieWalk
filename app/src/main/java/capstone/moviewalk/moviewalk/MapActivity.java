@@ -33,7 +33,7 @@ public class MapActivity extends AppCompatActivity {
         TextView mResultTv = findViewById(R.id.resultTv);
         mResultTv.setText("Latitude : " + name + "\nLongitude: " + email);
 
-
+//
 
         ////////////맵나타내기
         LinearLayout linearLayoutTmap = (LinearLayout) findViewById(R.id.linearLayoutTmap);

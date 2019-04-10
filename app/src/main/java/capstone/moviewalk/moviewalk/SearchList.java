@@ -21,7 +21,7 @@ public class SearchList extends AppCompatActivity {
     private ListAdapter adapter;
     private List<Data> dataList;
     private List<Data> saveList;
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
