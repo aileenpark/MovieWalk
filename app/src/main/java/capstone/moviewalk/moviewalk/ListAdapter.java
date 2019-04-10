@@ -1,11 +1,14 @@
 package capstone.moviewalk.moviewalk;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,20 +22,29 @@ import java.util.List;
 public class ListAdapter extends BaseAdapter {
 
     private Context context;
+    //원본 데이터 리스트
     private List<Data> dataList;
+    //검색 때 사용할 리스트(글만 불러오기)
+    private Activity parentActivity;
+    private List<Data> saveList;
+
+
 
     Bitmap bitmap1;
     Bitmap bitmap2;
 
-    public ListAdapter(Context context, List<Data> dataList){
+    public ListAdapter(Context context, List<Data> dataList, Activity parentActivity, List<Data> saveList){
         this.context = context;
         this.dataList = dataList;
+        this.parentActivity = parentActivity;
+        this.saveList= saveList;
     }
 
     @Override
     public int getCount() {
         return dataList.size();
     }
+
 
     @Override
     public Object getItem(int position) {
@@ -47,37 +59,50 @@ public class ListAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        //한 리스트 안에 들어가는거(user.xml)12
+        //한 리스트 안에 들어가는거(user.xml)
         View v = View.inflate(context,R.layout.user,null);
 
-        TextView ID = (TextView) v.findViewById(R.id.ID);
+
         TextView NAME = (TextView) v.findViewById(R.id.NAME);
         TextView TITLE = (TextView) v.findViewById(R.id.TITLE);
-        TextView LATITUDE = (TextView) v.findViewById(R.id.LATITUDE);
-        TextView LONGITUDE = (TextView) v.findViewById(R.id.LONGITUDE);
-        TextView ADDRESS = (TextView) v.findViewById(R.id.ADDRESS);
-        TextView IMAGE1= (TextView) v.findViewById(R.id.IMAGE1);
-        TextView IMAGE2 = (TextView) v.findViewById(R.id.IMAGE2);
         TextView INFORMATION = (TextView) v.findViewById(R.id.INFORMATION);
 
         //이미지 출력
         ImageView IMAGEVIEW1 = (ImageView) v.findViewById(R.id.ImageView1);
         ImageView IMAGEVIEW2 = (ImageView) v.findViewById(R.id.ImageView2);
 
+        //지도 이동 버튼
+        Button mapButton = (Button) v.findViewById(R.id.mapBtn);
+
+
         //이미지 주소 저장
         final String ImageV1 = dataList.get(position).getMember_image1();
         final String ImageV2 = dataList.get(position).getMember_image2();
 
+        //위도 경도 주소 string->double로 저장
+        final Double latitude =Double.parseDouble(dataList.get(position).getMember_latitude());
+        final Double longitude =Double.parseDouble(dataList.get(position).getMember_longitude());
+
+
+        //map버튼 클릭시 mapactivity로 이동
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, MapActivity.class);
+                //Bundle bundle = new Bundle();
+
+                //bundle.putDouble("edittext",edittext.getText().toString());
+                intent.putExtra("latitude",latitude);
+                intent.putExtra("longitude",longitude);
+                context.startActivity(intent);
+            }
+        });
+
 
         //출력
-        ID.setText(dataList.get(position).getMember_id());
         NAME.setText(dataList.get(position).getMember_name());
         TITLE.setText(dataList.get(position).getMember_title());
-        LATITUDE.setText(dataList.get(position).getMember_latitude());
-        LONGITUDE.setText(dataList.get(position).getMember_longitude());
-        ADDRESS.setText(dataList.get(position).getMember_address());
-        IMAGE1.setText(dataList.get(position).getMember_image1());
-        IMAGE2.setText(dataList.get(position).getMember_image2());
         INFORMATION.setText(dataList.get(position).getMember_information());
 
         //이미지1 출력
@@ -131,7 +156,7 @@ public class ListAdapter extends BaseAdapter {
                 }catch(MalformedURLException e){
                     e.printStackTrace();
                 }catch (IOException e){
-                    e.printStackTrace();;
+                    e.printStackTrace();
                 }
 
             }
@@ -146,6 +171,8 @@ public class ListAdapter extends BaseAdapter {
         } catch (InterruptedException e){
             e.printStackTrace();
         }
+
+
 
 
         //끝

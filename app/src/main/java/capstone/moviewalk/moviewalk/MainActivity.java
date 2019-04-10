@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 
 import java.io.BufferedReader;
@@ -21,15 +20,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button managementButton = (Button)findViewById(R.id.managementButton);
 
-        managementButton.setOnClickListener(new View.OnClickListener(){
-           @Override
-            public void onClick(View view){
-                 new BackgroundTask().execute();
-           }
-        });
+
+                new BackgroundTask().execute();
     }
 
-    //DB 받아오는 php 파일로 연결2
+    //DB 받아오는 php 파일로 연결
 
     class BackgroundTask extends AsyncTask<Void, Void, String>
     {
@@ -70,13 +65,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         @Override
-        //php 연결되면 ManagementActivity 로 전환2
+        //php 연결되면 ManagementActivity 로 전환
         public void onPostExecute(String result){
-            Intent intent = new Intent(MainActivity.this, ManagementActivity.class);
+            Intent intent = new Intent(MainActivity.this, MainScreen.class);
+
             intent.putExtra("dataList", result);
+
             MainActivity.this.startActivity(intent);
 
         }
 
     }
 }
+

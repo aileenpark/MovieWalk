@@ -8,13 +8,7 @@
     android:paddingBottom="5dp"
     android:background="#ffffff"
     >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ID"
-        android:text="ID"
-        android:textSize="20dp"
-        android:textColor="#1aa7ff"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,48 +23,14 @@
     android:text="TITLE"
     android:textSize="20dp"
     android:textColor="#fea7f5"/>
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/LATITUDE"
-        android:text="LATITUDE"
-        android:textSize="20dp"
-        android:textColor="#f1a7f5"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/LONGITUDE"
-        android:text="LONGITUDE"
-        android:textSize="20dp"
-        android:textColor="#741765"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ADDRESS"
-        android:text="ADDRESS"
-        android:textSize="20dp"
-        android:textColor="#00a705"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/IMAGE1"
-        android:text="IMAGE1"
-        android:textSize="20dp"
-        android:textColor="#00a0f5"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/IMAGE2"
-        android:text="IMAGE2"
-        android:textSize="20dp"
-        android:textColor="#600000"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/INFORMATION"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="INFORMATION"
-        android:textSize="20dp"
-        android:textColor="#80a7f5"/>
+        android:textColor="#80a7f5"
+        android:textSize="20dp" />
 
     //이미지 연습
 
@@ -78,12 +38,21 @@
         android:id="@+id/ImageView1"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:adjustViewBounds="true"/>
+        android:adjustViewBounds="true" />
+
     <ImageView
         android:id="@+id/ImageView2"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:adjustViewBounds="true"/>
+        android:adjustViewBounds="true" />
 
-//12
+    <Button
+        android:id="@+id/mapBtn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="20dp"
+        android:text="map"
+        android:layout_gravity="center"/>
+
+
 </LinearLayout>

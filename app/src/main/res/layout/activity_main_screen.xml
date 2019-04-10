@@ -84,7 +84,7 @@
                 android:id="@+id/managementButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="managementButton"
+                android:text="search"
                 tools:layout_editor_absoluteX="116dp"
                 tools:layout_editor_absoluteY="331dp" />
 
