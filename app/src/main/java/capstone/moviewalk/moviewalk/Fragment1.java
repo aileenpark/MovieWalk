@@ -30,8 +30,21 @@ import java.util.ArrayList;
 
 import capstone.moviewalk.moviewalk.R;
 
+
 public class Fragment1 extends android.app.Fragment {
 
+
+    public static Fragment1 newInstance(){
+        return new Fragment1();
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
+
+
+
+    //////////////////맵 나타내기
     TMapView tmapview;
     ViewGroup mapViewContainer;
     public static boolean isStart = false;
@@ -50,11 +63,13 @@ public class Fragment1 extends android.app.Fragment {
         isStart = true;
 
 
-        //현재위치 표시
+        //현재위치 표시//
         tmapview.setIconVisibility(true);
         setGps();
+        ///////////////
 
 
+        ////마커 나타내기////
         final ArrayList alTMapPoint = new ArrayList();
         alTMapPoint.add(new TMapPoint(37.505426, 126.957169));
         final Bitmap bitmap = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.red_pin);
@@ -68,7 +83,9 @@ public class Fragment1 extends android.app.Fragment {
         }
 
 
-        /*tmapview.setOnClickListenerCallBack(new TMapView.OnClickListenerCallback() {
+
+        ////마커클릭 이벤트////
+        tmapview.setOnClickListenerCallBack(new TMapView.OnClickListenerCallback() {
 
             @Override
             public boolean onPressEvent(ArrayList<TMapMarkerItem> arrayList, ArrayList<TMapPOIItem> arrayList1, TMapPoint tMapPoint, PointF pointF) {
@@ -78,37 +95,38 @@ public class Fragment1 extends android.app.Fragment {
 
             @Override
             public boolean onPressUpEvent(ArrayList<TMapMarkerItem> arrayList, ArrayList<TMapPOIItem> arrayList1, TMapPoint tMapPoint, PointF pointF) {
+
+                ////마커클릭시 다음프래그먼트로 이동
                 TMapMarkerItem marker = null;
                 for(int i=0; i<arrayList.size(); i++) {
                     marker = arrayList.get(i);
-
-
                     if (!arrayList.get(0).equals(null)) {
                         String markerID = marker.getID();
 
-                        Intent intent = new Intent(MainActivity.this, SubActivity.class);
-                        intent.putExtra("markerID", markerID);
-                        startActivity(intent);
+                        Bundle bundle = new Bundle(i);
+                        bundle.putString("markerID", markerID);
+
+                        android.app.FragmentManager fragmentManager = getFragmentManager();
+                        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                        Fragment1_info secondFragment = new Fragment1_info();
+                        secondFragment.setArguments(bundle);
+
+                        fragmentTransaction.replace(R.id.main_frame,secondFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+
                     }
                 }
                 return false;
             }
         });
-*/
-
-
-
-
-
-
-
-
-
-
-
         return v;
     }
 
+
+
+    ///////gps 표시
     private final LocationListener mLocationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
 
@@ -132,6 +150,8 @@ public class Fragment1 extends android.app.Fragment {
         }
     };
 
+
+    /////gps표시
     public void setGps() {
         final LocationManager gps = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
