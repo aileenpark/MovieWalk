@@ -10,13 +10,13 @@
     android:paddingTop="16dp"
     android:orientation="vertical"
     android:background="#d1d1d1"
-    tools:context=".MainScreen">
+    tools:context=".MainActivity">
     <EditText
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="검색" />
-//
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"

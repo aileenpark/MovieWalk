@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.widget.LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="5dp"
     android:paddingRight="10dp"
     android:paddingLeft="10dp"
     android:paddingBottom="5dp"
-    android:background="#ffffff"
-    >
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="9">
+        <FrameLayout
+            android:name="com.example.ui"
+            android:id="@+id/main_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </FrameLayout>
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,12 +32,12 @@
         android:textSize="20dp"
         android:textColor="#3227f0"/>
     <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/TITLE"
-    android:text="TITLE"
-    android:textSize="20dp"
-    android:textColor="#fea7f5"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TITLE"
+        android:text="TITLE"
+        android:textSize="20dp"
+        android:textColor="#fea7f5"/>
 
     <TextView
         android:id="@+id/INFORMATION"
@@ -45,14 +60,25 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:adjustViewBounds="true" />
-//
-    <Button
-        android:id="@+id/mapBtn"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textSize="20dp"
-        android:text="map"
-        android:layout_gravity="center"/>
+        android:gravity="center">
+        <Button
+            android:id="@+id/mapBtn"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="20dp"
+            android:text="map"
+            android:layout_gravity="center"/>
 
+        <Button
+            android:id="@+id/Bookmark"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="20dp"
+            android:text="Bookmark"
+            android:layout_gravity="center"/>
+    </LinearLayout>
 
-</LinearLayout>
+</android.widget.LinearLayout>

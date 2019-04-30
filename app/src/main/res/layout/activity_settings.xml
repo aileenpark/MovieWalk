@@ -15,7 +15,7 @@
         android:layout_marginBottom="30dp"
         android:layout_marginTop="20dp"
         app:srcCompat="@drawable/settings_category" />
-//
+
     <ListView
         android:id="@+id/alarmList"
         android:layout_width="match_parent"

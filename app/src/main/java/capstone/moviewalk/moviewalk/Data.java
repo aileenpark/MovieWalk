@@ -10,7 +10,7 @@ public class Data {
     String member_image1;
     String member_image2;
     String member_information;
-//
+
     public String getMember_id() {
         return member_id;
     }
