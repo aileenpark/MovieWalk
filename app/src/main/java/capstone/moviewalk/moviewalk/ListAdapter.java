@@ -1,7 +1,6 @@
 package capstone.moviewalk.moviewalk;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,11 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -74,6 +69,8 @@ public class ListAdapter extends BaseAdapter {
         TextView NAME = (TextView) v.findViewById(R.id.NAME);
         TextView TITLE = (TextView) v.findViewById(R.id.TITLE);
         TextView INFORMATION = (TextView) v.findViewById(R.id.INFORMATION);
+        TextView infoURL = (TextView) v.findViewById(R.id.infoURL);
+
 
         //이미지 출력
         ImageView IMAGEVIEW1 = (ImageView) v.findViewById(R.id.ImageView1);
@@ -100,6 +97,7 @@ public class ListAdapter extends BaseAdapter {
         final String name = (dataList.get(position).getMember_name());
         final String information = (dataList.get(position).getMember_information());
 
+
         //map버튼 클릭시 mapactivity로 이동
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,44 +118,10 @@ public class ListAdapter extends BaseAdapter {
 
         //북마크
         BookmarkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try
-                        {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-
-                            if(success){
-                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setMessage("성공")
-                                    .setPositiveButton("확인",null)
-                                    .create()
-                                    .show();
-                            }
-                            else
-                            {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                                builder.setMessage("실패")
-                                        .setNegativeButton("실패",null)
-                                        .create()
-                                        .show();
-                            }
-                        }
-                        catch(JSONException e)
-                        {
-                            e.printStackTrace();
-                        }
-                    }
-
-                };
-                BookmarkRequest bookmarkRequest = new BookmarkRequest(Integer.parseInt(dataList.get(position).getMember_id()), name, title, dataList.get(position).getMember_latitude(), dataList.get(position).getMember_longitude(), address, ImageV1, ImageV2, information, responseListener);
+                BookmarkRequest bookmarkRequest = new BookmarkRequest(Integer.parseInt(dataList.get(position).getMember_id()), name, title, dataList.get(position).getMember_latitude(), dataList.get(position).getMember_longitude(), address, ImageV1, ImageV2, information,dataList.get(position).getMember_infoURL(),null);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(bookmarkRequest);
-
             }
         });
 
@@ -167,6 +131,8 @@ public class ListAdapter extends BaseAdapter {
         NAME.setText(dataList.get(position).getMember_name());
         TITLE.setText(dataList.get(position).getMember_title());
         INFORMATION.setText(dataList.get(position).getMember_information());
+        infoURL.setText(dataList.get(position).getMember_infoURL());
+
 
         //이미지1 출력
         Thread mThread = new Thread() {
@@ -265,5 +231,7 @@ public class ListAdapter extends BaseAdapter {
 
         notifyDataSetChanged();
     }
+
+
 
 }

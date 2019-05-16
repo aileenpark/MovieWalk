@@ -10,6 +10,15 @@ public class Data {
     String member_image1;
     String member_image2;
     String member_information;
+    String member_infoURL;
+
+    public String getMember_infoURL() {
+        return member_infoURL;
+    }
+
+    public void setMember_infoURL(String member_infoURL) {
+        this.member_infoURL = member_infoURL;
+    }
 
     public String getMember_id() {
         return member_id;
@@ -83,7 +92,9 @@ public class Data {
         this.member_information = member_information;
     }
 
-    public Data(String member_id, String member_name, String member_title, String member_latitude, String member_longitude, String member_address, String member_image1, String member_image2, String member_information) {
+
+
+    public Data(String member_id, String member_name, String member_title, String member_latitude, String member_longitude, String member_address, String member_image1, String member_image2, String member_information, String member_infoURL) {
         this.member_id = member_id;
         this.member_name = member_name;
         this.member_title = member_title;
@@ -93,6 +104,7 @@ public class Data {
         this.member_image1 = member_image1;
         this.member_image2 = member_image2;
         this.member_information = member_information;
+        this.member_infoURL = member_infoURL;
     }
 
 

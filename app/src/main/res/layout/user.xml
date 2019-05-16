@@ -47,6 +47,15 @@
         android:textColor="#80a7f5"
         android:textSize="20dp" />
 
+    <TextView
+        android:id="@+id/infoURL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="infoURL"
+        android:textColor="#80a7f5"
+        android:textSize="20dp" />
+
+
     //이미지 연습
 
     <ImageView
