@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         bookmarkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookmarkSplash.class);
+                Intent intent = new Intent(getApplicationContext(), BookmarkSelect.class);
                 startActivity(intent);
             }
         });

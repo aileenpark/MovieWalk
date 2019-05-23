@@ -82,6 +82,8 @@ public class ListAdapter extends BaseAdapter {
         //북마크버튼
         final Button BookmarkButton = (Button) v.findViewById(R.id.Bookmark);
 
+        final Button HotelButton = (Button) v.findViewById(R.id.Hotel);
+
         final String id = dataList.get(position).getMember_id();
         final String title = dataList.get(position).getMember_title();
 
@@ -122,6 +124,21 @@ public class ListAdapter extends BaseAdapter {
                 BookmarkRequest bookmarkRequest = new BookmarkRequest(Integer.parseInt(dataList.get(position).getMember_id()), name, title, dataList.get(position).getMember_latitude(), dataList.get(position).getMember_longitude(), address, ImageV1, ImageV2, information,dataList.get(position).getMember_infoURL(),null);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(bookmarkRequest);
+            }
+        });
+
+        //호텔예약
+
+        HotelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, HotelActivity.class);
+
+                intent.putExtra("latitude", latitude);
+                intent.putExtra("longitude", longitude);
+
+                context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         });
 

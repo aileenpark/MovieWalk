@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BookmarkListActivity"></activity>
+        <activity android:name=".routeListActivity"></activity>
+        <activity android:name=".BookmarkSelect" />
+        <activity android:name=".HotelActivity" />
+        <activity android:name=".BookmarkListActivity" />
+        <activity android:name=".routeSplash" />
         <activity android:name=".BookmarkSplash" />
         <activity android:name=".MainActivity" />
         <activity android:name=".BookmarkActivity" />
