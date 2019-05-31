@@ -8,4 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SplashTheme">
+        <item name="android:windowBackground">@drawable/launch_page</item>
+    </style>
+
+    <style name="EditTheme">
+        <item name="colorAccent">@android:color/black</item>
+    </style>
+
 </resources>
