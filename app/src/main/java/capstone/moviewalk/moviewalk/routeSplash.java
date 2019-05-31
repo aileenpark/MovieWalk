@@ -1,5 +1,6 @@
 package capstone.moviewalk.moviewalk;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,10 +14,14 @@ import java.net.URL;
 
 public class routeSplash extends AppCompatActivity {
 
+    public static Activity _routeSplash;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_midi_splash);
+
+        _routeSplash = routeSplash.this;
 
         new routeSplash.BackgroundTask3().execute();
     }

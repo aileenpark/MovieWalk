@@ -1,5 +1,6 @@
 package capstone.moviewalk.moviewalk;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,10 +14,14 @@ import java.net.URL;
 
 public class SplashActivity extends AppCompatActivity {
 
+    public static Activity _splashActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        _splashActivity = SplashActivity.this;
 
         new BackgroundTask().execute();
     }

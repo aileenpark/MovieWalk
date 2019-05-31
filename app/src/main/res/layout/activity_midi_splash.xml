@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SplashActivity"
     android:id="@+id/activity_main"
-    android:theme="@android:style/Theme.NoDisplay">
+    android:theme="@android:style/Theme.Translucent">
 
 
 </android.support.constraint.ConstraintLayout>

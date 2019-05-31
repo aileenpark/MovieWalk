@@ -30,6 +30,8 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
     private BookmarkAdapter adapter;
     private List<Data> BookmarkList;
 
+    BookmarkSplash bookmark_splash = (BookmarkSplash)BookmarkSplash._bookmarkSplash;
+
 
     Double[][] LatLong = new Double[20][2];
     Double[][] Distance;
@@ -268,6 +270,16 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
             intent.putExtra("dataList", result);
 
             BookmarkListActivity.this.startActivity(intent);
+
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        try {
+            bookmark_splash.finish();
+        } catch (NullPointerException e) {
 
         }
     }

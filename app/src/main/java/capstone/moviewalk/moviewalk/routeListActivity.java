@@ -19,6 +19,8 @@ public class routeListActivity extends AppCompatActivity {
     private routeAdapter adapter;
     private List<Data> routeList;
 
+    routeSplash route_splash = (routeSplash)routeSplash._routeSplash;
+
 
     Double[][] LatLong_route = new Double[20][2];
     String[] Lat_route = new String[20];
@@ -90,5 +92,15 @@ public class routeListActivity extends AppCompatActivity {
 
         adapter = new routeAdapter(getApplicationContext(), routeList);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        try {
+            route_splash.finish();
+        } catch (NullPointerException e) {
+
+        }
     }
 }

@@ -25,50 +25,71 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/NAME"
-        android:text="NAME"
-        android:textSize="20dp"
-        android:textColor="#3227f0"/>
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/TITLE"
-        android:text="TITLE"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/nanum_square_regular"
+        android:text="NAME"
+        android:textColor="@android:color/black"
         android:textSize="20dp"
-        android:textColor="#fea7f5"/>
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/TITLE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/nanum_square_regular"
+        android:text="TITLE"
+        android:textColor="@android:color/black"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/INFORMATION"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/nanum_square_regular"
         android:text="INFORMATION"
-        android:textColor="#80a7f5"
-        android:textSize="20dp" />
+        android:textColor="@android:color/black"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/infoURL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/nanum_square_regular"
         android:text="infoURL"
-        android:textColor="#80a7f5"
-        android:textSize="20dp" />
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14dp" />
 
 
     //이미지 연습
 
-    <ImageView
-        android:id="@+id/ImageView1"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:adjustViewBounds="true" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="9"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/ImageView2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:adjustViewBounds="true" />
+        <ImageView
+            android:id="@+id/ImageView1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true" />
+
+        <ImageView
+            android:id="@+id/ImageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

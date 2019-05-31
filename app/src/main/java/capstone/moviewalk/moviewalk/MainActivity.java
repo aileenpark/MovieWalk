@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Data> saveList;
     private ListAdapter adapter;
 
+    SplashActivity splash_activity = (SplashActivity)SplashActivity._splashActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,5 +108,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        try {
+            splash_activity.finish();
+        } catch (NullPointerException e) {
+
+        }
     }
 }
