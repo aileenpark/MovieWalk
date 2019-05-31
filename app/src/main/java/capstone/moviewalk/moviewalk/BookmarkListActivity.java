@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,18 +36,20 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
     BookmarkSplash bookmark_splash = (BookmarkSplash)BookmarkSplash._bookmarkSplash;
 
 
-    Double[][] LatLong = new Double[20][2];
-    Double[][] Distance;
+    //Double[][] LatLong = new Double[20][2];
+    //Double[][] Distance;
 
     String[] Lat_route_multipoint = new String[20];
     String[] Long_route_multipoint = new String[20];
     String[] name_multipoint = new String[20];
     int count2 = 0;
 
-    public static int[][] W;
-    public static int[][] dp;
-    public static int N;
-    public static final int INF = 1000000000;
+    private static double[][] distances;
+    private static double[][] LatLong = new double[7][2];
+    private static double finalResults[];
+    private static String paths[];
+    private static int counter = 0;
+    private static int size = 0;
 
 
     @Override
@@ -81,8 +86,8 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
 
                 Data data = new Data(id,name,title,latitude,longitude,address,image1,image2,information,infoURL);
 
-                //LatLong[count][0]=  Double.parseDouble(latitude);
-                //LatLong[count][1]=  Double.parseDouble(longitude);
+                LatLong[count][0]=  Double.parseDouble(latitude);
+                LatLong[count][1]=  Double.parseDouble(longitude);
 
                 Lat_route_multipoint[count]=  latitude;
                 Long_route_multipoint[count]=  longitude;
@@ -90,7 +95,7 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
 
                 BookmarkList.add(data);
                 count++;
-                count2 = count;
+                size =  count;
             }
 
         }catch (Exception e){
@@ -99,68 +104,92 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
         adapter = new BookmarkAdapter(getApplicationContext(), BookmarkList);
         listView.setAdapter(adapter);
 
+        System.out.println("카운터"+size);
 
-        //latlong[][0]-latitude
-        //latlong[][1]-longitude
+
         route.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-/*
-                Distance= new Double[count2][count2];
-                int c=0;
-                System.out.println(count2);
 
+                distances= new double[size][size];
 
-                for(int k=0;k<count2;k++){
-                    for(int i=k;i<count2;i++){
+                //////////////////////no touch/////////////////////거리행렬생성
+                for(int k=0;k<size;k++){
+                    for(int i=k;i<size;i++){
 
                         if(k==i){
-                            Distance[k][i]=0.0;
+                            distances[k][i]=0.0;
                         }
                         else{
-                            Distance[k][i]=getDistance(LatLong[k][0],LatLong[k][1],LatLong[i][0],LatLong[i][1]);
-                            Distance[i][k]=Distance[k][i];
+                            distances[k][i]=getDistance(LatLong[k][0],LatLong[k][1],LatLong[i][0],LatLong[i][1]);
+                            distances[i][k]=distances[k][i];
                         }
                     }
-
                 }
 
-                for(int k=0;k<count2;k++){
-                    for(int i=0;i<count2;i++){
+                for(int k=0;k<size;k++){
+                    for(int i=0;i<size;i++){
 
-                        System.out.println(Distance[k][i]+" ");
+                        System.out.println(distances[k][i]+" ");
 
                     }
                     System.out.println("\n");
                 }
-//////////////
-                Scanner sc = new Scanner(System.in);
-                N = sc.nextInt();
-                W = new int[N + 1][N + 1];
-                dp = new int[N + 1][1 << N];
-                for (int i = 1; i <= N; i++) {
-                    for (int j = 1; j <= N; j++) {
-                        W[i][j] = sc.nextInt();
+                ////////////////////no touch///////////////////거리행렬생성
+
+
+                int numSolutions = factorial(size - 1);
+                finalResults = new double[numSolutions];
+                paths = new String[numSolutions];
+
+
+                /* ------------------------- ALGORITHM INITIALIZATION ----------------------- */
+
+                // Initial variables to start the algorithm
+                String path = "";
+                int[] vertices = new int[size - 1];
+
+                // Filling the initial vertices array with the proper values
+                for (int i = 1; i < size; i++) {
+                    vertices[i - 1] = i;
+                }
+
+                // FIRST CALL TO THE RECURSIVE FUNCTION
+                double distance = procedure(0, vertices, path, 0);
+
+                int optimal = 0;
+                for (int i = 0; i < numSolutions; i++) {
+
+                    System.out.print("Path: " + paths[i] + ". Distance = " + finalResults[i] + "\n");
+
+                    // When we reach the optimal one, its index is saved
+                    if (finalResults[i] == distance) {
+                        optimal = i;
                     }
                 }
-                // 2차원 배열의 모든 원소를 -1로
-                for (int i = 1; i <= N; i++) {
-                    Arrays.fill(dp[i], -1);
+                //System.out.println();
+                System.out.println("Path: " + paths[optimal] + ". Distance = " + finalResults[optimal] + " (OPTIMAL)");
+                String part[];
+                part = paths[optimal].split("[^A-Z0-9]+|[^0-9$]");
+                int foo;
+                int nu=0;
+                for(int i=0;i<part.length-1;i++){
+                    System.out.println(part[i]);
+                    foo = Integer.parseInt(part[i]);
+                    routeRequest RouteRequest = new routeRequest(Double.toString(LatLong[foo][0]),Double.toString(LatLong[foo][1]),Integer.toString(nu+1),null);
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    queue.add(RouteRequest);
+                    nu++;
                 }
-
-                int start = 1;
-                System.out.println(getShortestPath(start, 1));
-
-
-//////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 for(int k=0;k<count2;k++){
                     System.out.println(LatLong[k][0]+" "+LatLong[k][1]+"");
                     routeRequest RouteRequest = new routeRequest(Double.toString(LatLong[k][0]),Double.toString(LatLong[k][1]),Integer.toString(k+1),null);
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                     queue.add(RouteRequest);
                 }
-*/
+
 
 
                 Intent intent = new Intent(BookmarkListActivity.this, MapActivity_multipoint.class);
@@ -178,40 +207,83 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
         listView.setAdapter(adapter);
     }
 
-    public double getDistance(Double lat1, Double lon1, Double lat2, Double lon2){
+    public double getDistance(double lat1, double lon1, double lat2, double lon2){
         return Math.sqrt((lat1-lat2)*(lat1-lat2)+(lon1-lon2)*(lon1-lon2));
     }
 
-    public static int getShortestPath(int current, int visited) {
+    private static int factorial(int n) {
 
-        // 모든 정점을 다 들른 경우
-        if (visited == (1 << N) - 1)
-            return W[current][1];
-
-        // 이미 들렀던 경로이므로 바로 return
-        if (dp[current][visited] >= 0)
-            return dp[current][visited];
-
-        int ret = INF;
-
-        // 집합에서 다음에 올 원소를 고르자!
-        for (int i = 1; i <= N; i++) {
-            int next = i;
-
-            if ((visited & (1 << (next - 1))) != 0) // 중요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                continue;
-
-            if(W[current][next] == 0) // 0은 경로가 없으므로 pass
-                continue;
-
-            int temp = W[current][next] + getShortestPath(next, visited + (1 << (next - 1)));
-            ret = Math.min(ret, temp);
-        }
-
-        return dp[current][visited] = ret;
-
+        if (n <= 1) return 1;
+        else return (n * factorial(n - 1));
     }
 
+    /* ------------------------------- RECURSIVE FUNCTION ---------------------------- */
+
+    private static double procedure(int initial, int vertices[], String path, double costUntilHere) {
+
+        // We concatenate the current path and the vertex taken as initial
+        path = path + Integer.toString(initial) + " - ";
+        int length = vertices.length;
+        double newCostUntilHere;
+
+
+        // Exit case, if there are no more options to evaluate (last node)
+        if (length == 0) {
+
+            // Both results, numerical distances and paths to those distances, are stored
+            paths[counter] = path + "0";
+            finalResults[counter] = costUntilHere + distances[initial][0];
+
+            counter++;
+            return (distances[initial][0]);
+        }
+
+
+        // Common case, where there are more than 1 node
+        else {
+
+            int[][] newVertices = new int[length][(length - 1)];
+            double costCurrentNode, costChild;
+            double bestCost = Double.MAX_VALUE;
+
+            // For each of the nodes of the list
+            for (int i = 0; i < length; i++) {
+
+                // Each recursion new vertices list is constructed
+                for (int j = 0, k = 0; j < length; j++, k++) {
+
+                    // The current child is not stored in the new vertices array
+                    if (j == i) {
+                        k--;
+                        continue;
+                    }
+                    newVertices[i][k] = vertices[j];
+                }
+
+                // Cost of arriving the current node from its parent
+                costCurrentNode = distances[initial][vertices[i]];
+
+                // Here the cost to be passed to the recursive function is computed
+                newCostUntilHere = costCurrentNode + costUntilHere;
+
+                // RECURSIVE CALLS TO THE FUNCTION IN ORDER TO COMPUTE THE COSTS
+                costChild = procedure(vertices[i], newVertices[i], path, newCostUntilHere);
+
+                // The cost of every child + the current node cost is computed
+                double totalCost = costChild + costCurrentNode;
+
+                // Finally we select from the minimum from all possible children costs
+                if (totalCost < bestCost) {
+                    bestCost = totalCost;
+                }
+            }
+
+            return (bestCost);
+        }
+    }
+
+
+    /////////////////////////////////////////////no touch//////////////////////////////////////////////
     @Override
     public void onRefresh() {
         mSwipeRefreshLayout.setRefreshing(true);

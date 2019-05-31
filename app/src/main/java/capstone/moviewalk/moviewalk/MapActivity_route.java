@@ -126,12 +126,12 @@ public class MapActivity_route extends AppCompatActivity {
         // 출발지1, 경유지5, 도착지1 총 7개의 값만 불러올 수 있다.
 
         TMapPoint startPoint = new TMapPoint(Latitude_route[0], Longitude_route[0]); // 출발지
-        TMapPoint endPoint = new TMapPoint(Latitude_route[num - 1], Longitude_route[num - 1]); // 도착지
+        TMapPoint endPoint = new TMapPoint(Latitude_route[0], Longitude_route[0]); // 도착지
 
         TMapPoint point[] = new TMapPoint[20];
         ArrayList<TMapPoint> passList = new ArrayList<TMapPoint>();
 
-        for (int i = 1; i < num - 1; i++) {
+        for (int i = 1; i < num; i++) {
             point[i] = new TMapPoint(Latitude_route[i], Longitude_route[i]);
             passList.add(point[i]);
         }
@@ -140,11 +140,11 @@ public class MapActivity_route extends AppCompatActivity {
         tmapview.setTrackingMode(true);
 
         TMapData tmapdata = new TMapData();
-        tmapdata.findPathDataWithType(TMapData.TMapPathType.PEDESTRIAN_PATH, startPoint, endPoint, passList, 10, new TMapData.FindPathDataListenerCallback() {
+        tmapdata.findPathDataWithType(TMapData.TMapPathType.CAR_PATH, startPoint, endPoint, passList, 10, new TMapData.FindPathDataListenerCallback() {
             @Override
             public void onFindPathData(TMapPolyLine tMapPolyLine) {
                 tMapPolyLine.setLineColor(Color.BLUE);
-                tMapPolyLine.setLineWidth(10);
+                tMapPolyLine.setLineWidth(5);
                 tmapview.addTMapPath(tMapPolyLine);
             }
         });
