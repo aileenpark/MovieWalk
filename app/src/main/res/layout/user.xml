@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="5dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:paddingBottom="5dp"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="9">
+        <FrameLayout
+            android:name="com.example.ui"
+            android:id="@+id/main_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NAME"
+        android:text="NAME"
+        android:textSize="20dp"
+        android:textColor="#3227f0"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TITLE"
+        android:text="TITLE"
+        android:textSize="20dp"
+        android:textColor="#fea7f5"/>
+
+    <TextView
+        android:id="@+id/INFORMATION"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INFORMATION"
+        android:textColor="#80a7f5"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/infoURL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="infoURL"
+        android:textColor="#80a7f5"
+        android:textSize="20dp" />
+
+
+    //이미지 연습
+
+    <ImageView
+        android:id="@+id/ImageView1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true" />
+
+    <ImageView
+        android:id="@+id/ImageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/mapBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:baselineAligned="false"
+            android:text="map"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/Bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:baselineAligned="false"
+            android:text="Bookmark"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/Hotel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:baselineAligned="false"
+            android:text="Hotel"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+</android.widget.LinearLayout>

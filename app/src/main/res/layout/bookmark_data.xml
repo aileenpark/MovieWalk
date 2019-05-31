@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="5dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:paddingBottom="5dp"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="9">
+        <FrameLayout
+            android:name="com.example.ui"
+            android:id="@+id/main_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:text="name"
+        android:textSize="20dp"
+        android:textColor="#3227f0"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TITLE"
+        android:text="TITLE"
+        android:textSize="20dp"
+        android:textColor="#fea7f5"/>
+
+    <TextView
+        android:id="@+id/INFORMATION"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INFORMATION"
+        android:textColor="#80a7f5"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/infoURL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="infoURL"
+        android:textColor="#80a7f5"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/Delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:baselineAligned="false"
+            android:text="Delete"
+            android:textSize="10sp" />
+
+
+    </LinearLayout>
+
+
+
+</android.widget.LinearLayout>
