@@ -5,17 +5,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookmarkAdapter extends BaseAdapter {
 
     private Context context;
     private List<Data> BookmarkList;
+    private List<Data> TempB=new ArrayList<Data>();
 
     public BookmarkAdapter(Context context, List<Data> dataList) {
         this.context = context;
@@ -45,14 +48,16 @@ public class BookmarkAdapter extends BaseAdapter {
         TextView title = (TextView) v.findViewById(R.id.TITLE);
         TextView infoURL = (TextView) v.findViewById(R.id.infoURL);
         Button Delete = (Button)v.findViewById(R.id.Delete);
+        final int pos = position;
+        final Context context = parent.getContext();
 
 
         name.setText(BookmarkList.get(position).getMember_name());
         title.setText(BookmarkList.get(position).getMember_title());
         information.setText(BookmarkList.get(position).getMember_information());
         infoURL.setText(BookmarkList.get(position).getMember_infoURL());
+        System.out.println(position);
 
-        final String id = BookmarkList.get(position).getMember_id();
         Delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 BookmarkDeleteRequest BookmarkDeleteRequest = new BookmarkDeleteRequest(Integer.parseInt(BookmarkList.get(position).getMember_id()),null);

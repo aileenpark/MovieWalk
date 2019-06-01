@@ -1,14 +1,18 @@
 package capstone.moviewalk.moviewalk;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -62,6 +66,7 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
 
         Intent intent = getIntent();
         listView = (ListView) findViewById(R.id.listView2);
+
 
         Button route= (Button)findViewById(R.id.route);
         BookmarkList= new ArrayList<Data>();
@@ -203,8 +208,8 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
 
             }
         });
-        adapter = new BookmarkAdapter(getApplicationContext(), BookmarkList);
-        listView.setAdapter(adapter);
+
+
     }
 
     public double getDistance(double lat1, double lon1, double lat2, double lon2){

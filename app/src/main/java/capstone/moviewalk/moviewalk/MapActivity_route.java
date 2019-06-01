@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
 import com.skt.Tmap.TMapData;
+import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapPolyLine;
 import com.skt.Tmap.TMapView;
@@ -44,27 +45,19 @@ public class MapActivity_route extends AppCompatActivity {
         tmapview.setSKTMapApiKey("a9ccc80c-1188-4fde-a5e0-627c5a650bcc");
         linearLayoutTmap_route.addView(tmapview);
 
+        TMapGpsManager gps = new TMapGpsManager(this);
+        gps.setProvider(gps.GPS_PROVIDER);
+        gps.OpenGps();
         //현재위치 아이콘 표시
         tmapview.setIconVisibility(true);
-        //gps함수호출
-        setGps();
-        //현재 보는 방향
-        //tmapview.setCompassMode(true);
 
 
-        //double latitude_route = intent.getDoubleExtra("latitude",-1);
-        //double longitude_route = intent.getDoubleExtra("longitude",-1);
+        TMapPoint ST = gps.getLocation();
 
-        //double latlong = intent.getDoubleExtra("latlong",-1);
-
-
-        System.out.println("hi");
         String[] Lat_route = intent.getStringArrayExtra("lat");
         String[] Long_route = intent.getStringArrayExtra("long");
         int num = intent.getIntExtra("num",-1);
 
-        System.out.println("hi");
-        System.out.println(Lat_route[0] + Long_route[0]);
 
         //final Double latitude = Double.parseDouble(dataList.get(position).getMember_latitude());
         //final Double longitude = Double.parseDouble(dataList.get(position).getMember_longitude());
@@ -72,9 +65,11 @@ public class MapActivity_route extends AppCompatActivity {
         double[] Latitude_route = new double[20];
         double[] Longitude_route = new double[20];
 
+        //num: 데이터 개수
         for(int i=0; i<num; i++) {
             Latitude_route[i] = Double.parseDouble(Lat_route[i]);
             Longitude_route[i] = Double.parseDouble(Long_route[i]);
+            System.out.println(i);//0 1 2 3
         }
 
 
@@ -83,64 +78,56 @@ public class MapActivity_route extends AppCompatActivity {
         TMapPoint tpoint = tmapview.getCenterPoint();
         double Latitude_center = tpoint.getLatitude();
         double Longitude_center = tpoint.getLongitude();
-/*
-        //(1,0),(1,1),(2,0),(2,1) .... 에 위도 경도 대입
-        for(int i=0; i<num; i++) {
-            LatLong[i+1][0] = Latitude_route[i];
-            LatLong[i+1][1] = Longitude_route[i];
-        }
 
-        // (0,0),(0,1)에 맵 center포인트 대입
-        LatLong[0][0] = Latitude_center;
-        LatLong[0][1] = Longitude_center;
-
-
-        Distance= new Double[num][num];
-
-        for(int k=0;k<num;k++){
-            //[k][2]에 계산된 거리들 넣음.
-            Distance[k+1][2] = getDistance(LatLong[0][0],LatLong[0][1],LatLong[k+1][0],LatLong[k+1][1]);
-            System.out.println(Distance[k][2]);
-        }
-*/
-
-
-        /*
-        for(int i=0; i<num-1; i++){
-            for(int j=0; j<num-i-1; j++){
-                if(Distance[i][2] > Distance[i+1][2]){
-                    Double a=Distance[i][2];
-                    Distance[i][2] = Distance[i+1][2];
-                    Distance[i+1][2] = a;
-                }
-            }
-        }
-        */
-
-
-        /////////
-        //경로표시
-        /////////
-
-        // Tmap API 에서 제공되는 경유지는 총 5개이다.
-        // 출발지1, 경유지5, 도착지1 총 7개의 값만 불러올 수 있다.
-
-        TMapPoint startPoint = new TMapPoint(Latitude_route[0], Longitude_route[0]); // 출발지
-        TMapPoint endPoint = new TMapPoint(Latitude_route[0], Longitude_route[0]); // 도착지
 
         TMapPoint point[] = new TMapPoint[20];
         ArrayList<TMapPoint> passList = new ArrayList<TMapPoint>();
 
-        for (int i = 1; i < num; i++) {
+        for (int i = 0; i < num; i++) {
             point[i] = new TMapPoint(Latitude_route[i], Longitude_route[i]);
-            passList.add(point[i]);
         }
 
+        // 0 1 2 3
+
+        /////////////////////////////////////////////
+        //원래는 사용자 위치 받아야 함
+        TMapPoint examplePoint = new TMapPoint(37.506036,126.9566235);
+        TMapPolyLine polyEx = new TMapPolyLine();
+        double Distance=0;
+        double Distance2=9999999999.9;
+
+        int idx=-1;//현재 사용자 위치에서 제일 가까운 점 찾음
+
+
+        for(int i =0; i<num;i++){
+            polyEx.addLinePoint(examplePoint);
+            polyEx.addLinePoint(point[i]);
+            Distance = polyEx.getDistance();
+            System.out.println(Distance);
+            if(Distance<Distance2){
+                Distance2=Distance;
+                System.out.println(Distance2);
+                idx++;
+            }
+        }
+
+        for(int i=0;i<num;i++){
+            if(i+idx<num){
+                System.out.println(i+idx);
+                passList.add(point[i+idx]);
+            }
+            else{
+                System.out.println(i-idx);
+                passList.add(point[i-idx]);
+            }
+
+        }
+         ////////////////////////////////////
         tmapview.removeTMapPath();
         tmapview.setTrackingMode(true);
 
         TMapData tmapdata = new TMapData();
-        tmapdata.findPathDataWithType(TMapData.TMapPathType.CAR_PATH, startPoint, endPoint, passList, 10, new TMapData.FindPathDataListenerCallback() {
+        tmapdata.findPathDataWithType(TMapData.TMapPathType.CAR_PATH, examplePoint, examplePoint, passList, 10, new TMapData.FindPathDataListenerCallback() {
             @Override
             public void onFindPathData(TMapPolyLine tMapPolyLine) {
                 tMapPolyLine.setLineColor(Color.BLUE);
@@ -153,11 +140,6 @@ public class MapActivity_route extends AppCompatActivity {
         Bitmap end = BitmapFactory.decodeResource(getResources(), R.drawable.end);
 
         tmapview.setTMapPathIcon(start, end);
-        tmapview.zoomToTMapPoint(startPoint, endPoint);
-
-        //////////////
-        ////경료표시 끝
-        //////////////
 
 
 
