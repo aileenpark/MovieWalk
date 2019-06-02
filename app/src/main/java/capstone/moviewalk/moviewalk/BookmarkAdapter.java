@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -63,6 +64,7 @@ public class BookmarkAdapter extends BaseAdapter {
                 BookmarkDeleteRequest BookmarkDeleteRequest = new BookmarkDeleteRequest(Integer.parseInt(BookmarkList.get(position).getMember_id()),null);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(BookmarkDeleteRequest);
+                Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_LONG).show();
             }
         });
 

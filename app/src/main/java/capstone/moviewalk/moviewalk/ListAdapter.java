@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -125,6 +126,7 @@ public class ListAdapter extends BaseAdapter {
                 BookmarkRequest bookmarkRequest = new BookmarkRequest(Integer.parseInt(dataList.get(position).getMember_id()), name, title, dataList.get(position).getMember_latitude(), dataList.get(position).getMember_longitude(), address, ImageV1, ImageV2, information,dataList.get(position).getMember_infoURL(),null);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(bookmarkRequest);
+                Toast.makeText(context, "북마크에 추가되었습니다.", Toast.LENGTH_LONG).show();
             }
         });
 
