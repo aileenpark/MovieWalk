@@ -28,13 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".BookmarkActivity" />
-        <activity android:name=".SettingsActivity"></activity>
-=======
+
         <activity android:name=".SearchListActivity" />
         <activity android:name=".MapActivity" />
->>>>>>> imewoo/workspace
     </application>
 
 </manifest>
