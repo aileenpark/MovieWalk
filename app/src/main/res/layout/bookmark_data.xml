@@ -74,12 +74,14 @@
 
         <Button
             android:id="@+id/Delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
+            android:background="@drawable/rounded_rectangle"
             android:baselineAligned="false"
             android:text="Delete"
-            android:textSize="10sp" />
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
 
 
     </LinearLayout>

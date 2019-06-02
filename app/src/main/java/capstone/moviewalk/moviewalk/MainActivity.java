@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        Spinner spinner = (Spinner)findViewById(R.id.spinner2);
+        /*Spinner spinner = (Spinner)findViewById(R.id.spinner2);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
-        });
+        });*/
 
 
 

@@ -2,6 +2,7 @@ package capstone.moviewalk.moviewalk;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -35,8 +36,9 @@ public class routeListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         listView = (ListView) findViewById(R.id.listView2);
-
-        Button map= (Button)findViewById(R.id.map);
+//
+//        Button map= (Button)findViewById(R.id.map);
+        FloatingActionButton routefab = (FloatingActionButton)findViewById(R.id.routefab);
 
        // Button map= (Button)findViewById(R.id.map);
         routeList= new ArrayList<Data>();
@@ -77,7 +79,7 @@ public class routeListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        map.setOnClickListener(new View.OnClickListener() {
+        routefab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(routeListActivity.this, MapActivity_route.class);
