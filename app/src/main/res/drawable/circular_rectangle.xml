@@ -1,7 +1,11 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle" android:padding="10dp">
     <solid
+<<<<<<< HEAD
         android:color="#c35b47"/>
+=======
+        android:background="@drawable/category_background" />
+>>>>>>> imewoo/workspace
     <corners
         android:bottomRightRadius="20dp"
         android:topRightRadius="20dp"/>

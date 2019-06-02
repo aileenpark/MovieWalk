@@ -5,50 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BookmarkActivity">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="186dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="60dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/circular_rectangle"
-        android:fontFamily="@font/antre"
-        android:text="bookmark"
-        android:textColor="@android:color/white"
-        android:textSize="20dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="16dp" />
+    tools:context=".BookmarkActivity"
+    android:background="#f2f1f1">
 
-    <Button
-        android:id="@+id/routeButton"
+
+    <FrameLayout
+        android:id="@+id/bookmark_frame"
         android:layout_width="match_parent"
-        android:layout_height="186dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/rounded_rectangle"
-        android:fontFamily="@font/nanum_square_regular"
-        android:text="경로별"
-        android:textColor="@android:color/white"
-        android:textSize="35dp"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="138dp" />
-
-    <Button
-        android:id="@+id/locButton"
-        android:layout_width="match_parent"
-        android:layout_height="186dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/rounded_rectangle"
-        android:fontFamily="@font/nanum_square_regular"
-        android:text="장소별"
-        android:textColor="@android:color/white"
-        android:textSize="35dp"
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="364dp" />
-
+        android:layout_height="match_parent">
+    </FrameLayout>
 </LinearLayout>
