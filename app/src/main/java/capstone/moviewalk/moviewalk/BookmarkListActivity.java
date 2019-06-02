@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -68,7 +69,7 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
         listView = (ListView) findViewById(R.id.listView2);
 
 
-        Button route= (Button)findViewById(R.id.route);
+        FloatingActionButton mapfab = (FloatingActionButton) findViewById(R.id.mapfab);
         BookmarkList= new ArrayList<Data>();
 
         try{
@@ -111,8 +112,8 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
 
         System.out.println("카운터"+size);
 
-
-        route.setOnClickListener(new View.OnClickListener() {
+        // route 버튼 대신 floating action button 타입인 mapfab로 변경
+        mapfab.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -208,6 +209,7 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
 
             }
         });
+
 
 
     }
