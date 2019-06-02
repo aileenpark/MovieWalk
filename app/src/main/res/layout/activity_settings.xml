@@ -16,17 +16,22 @@
         android:layout_marginTop="20dp"
         app:srcCompat="@drawable/settings_category" />
 
-    <ListView
-        android:id="@+id/alarmList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"/>
 
-    <ListView
-        android:id="@+id/dataInitList"
+    <Button
+        android:id="@+id/init"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"/>
+        android:layout_height="186dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_rectangle"
+        android:fontFamily="@font/nanum_square_regular"
+        android:text="데이터 삭제"
+        android:textColor="@android:color/white"
+        android:textSize="35dp"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="364dp" />
 
 
 
