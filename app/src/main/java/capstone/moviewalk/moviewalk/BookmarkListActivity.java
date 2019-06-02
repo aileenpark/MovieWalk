@@ -46,6 +46,9 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
     String[] Lat_route_multipoint = new String[20];
     String[] Long_route_multipoint = new String[20];
     String[] name_multipoint = new String[20];
+    String[] address_multipoint = new String[20];
+    String[] information_multipoint = new String[20];
+    String[] info_URL_multipoint = new String[20];
     int count2 = 0;
 
     private static double[][] distances;
@@ -97,6 +100,9 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
                 Lat_route_multipoint[count]=  latitude;
                 Long_route_multipoint[count]=  longitude;
                 name_multipoint[count]=  name;
+                address_multipoint[count] = address;
+                information_multipoint[count] = address;
+                info_URL_multipoint[count] = address;
 
                 BookmarkList.add(data);
                 count++;
@@ -202,7 +208,10 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
                 intent.putExtra("lat_multipoint", Lat_route_multipoint);
                 intent.putExtra("long_multipoint", Long_route_multipoint);
                 intent.putExtra("name_multipoint", name_multipoint);
-                intent.putExtra("num_multipoint",count2);
+                intent.putExtra("num_multipoint",size);
+                intent.putExtra("address_multipoint", address_multipoint);
+                intent.putExtra("information_multipoint", information_multipoint);
+                intent.putExtra("info_URL_multipoint", info_URL_multipoint);
 
                 startActivity(intent);
 
