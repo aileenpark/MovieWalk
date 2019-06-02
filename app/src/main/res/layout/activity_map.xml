@@ -16,18 +16,15 @@ tools:context=".MapActivity">
     android:layout_weight="8"
     android:orientation="vertical"
     android:gravity="center">
-
-
 </LinearLayout>
 
 <LinearLayout
     android:id="@+id/ll_fragment"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="0dip"
     android:layout_weight="1"
     android:orientation="vertical"
     android:background="#FFFFFF">
-
 
 
 </LinearLayout>
