@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +47,9 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
     String[] Lat_route_multipoint = new String[20];
     String[] Long_route_multipoint = new String[20];
     String[] name_multipoint = new String[20];
+    String[] address_multipoint = new String[20];
+    String[] information_multipoint = new String[20];
+    String[] info_URL_multipoint = new String[20];
     int count2 = 0;
 
     private static double[][] distances;
@@ -68,7 +72,7 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
         listView = (ListView) findViewById(R.id.listView2);
 
 
-        Button route= (Button)findViewById(R.id.route);
+        FloatingActionButton mapfab = (FloatingActionButton) findViewById(R.id.mapfab);
         BookmarkList= new ArrayList<Data>();
 
         try{
@@ -97,6 +101,9 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
                 Lat_route_multipoint[count]=  latitude;
                 Long_route_multipoint[count]=  longitude;
                 name_multipoint[count]=  name;
+                address_multipoint[count] = address;
+                information_multipoint[count] = address;
+                info_URL_multipoint[count] = address;
 
                 BookmarkList.add(data);
                 count++;
@@ -111,8 +118,8 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
 
         System.out.println("카운터"+size);
 
-
-        route.setOnClickListener(new View.OnClickListener() {
+        // route 버튼 대신 floating action button 타입인 mapfab로 변경
+        mapfab.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -202,12 +209,16 @@ public class BookmarkListActivity extends AppCompatActivity implements SwipeRefr
                 intent.putExtra("lat_multipoint", Lat_route_multipoint);
                 intent.putExtra("long_multipoint", Long_route_multipoint);
                 intent.putExtra("name_multipoint", name_multipoint);
-                intent.putExtra("num_multipoint",count2);
+                intent.putExtra("num_multipoint",size);
+                intent.putExtra("address_multipoint", address_multipoint);
+                intent.putExtra("information_multipoint", information_multipoint);
+                intent.putExtra("info_URL_multipoint", info_URL_multipoint);
 
                 startActivity(intent);
 
             }
         });
+
 
 
     }
